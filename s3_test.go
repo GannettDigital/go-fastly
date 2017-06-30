@@ -29,6 +29,7 @@ func TestClient_S3s(t *testing.T) {
 			FormatVersion:   2,
 			TimestampFormat: "%Y",
 			Redundancy:      S3RedundancyReduced,
+			MessageType:     "classic",
 		})
 	})
 	if err != nil {
@@ -87,6 +88,9 @@ func TestClient_S3s(t *testing.T) {
 	}
 	if s3.Redundancy != S3RedundancyReduced {
 		t.Errorf("bad redundancy: %q", s3.Redundancy)
+	}
+	if s3.MessageType != "classic" {
+		t.Errorf("bad message_type: %q", s3.MessageType)
 	}
 
 	// List
@@ -151,6 +155,9 @@ func TestClient_S3s(t *testing.T) {
 	}
 	if s3.Redundancy != ns3.Redundancy {
 		t.Errorf("bad redundancy: %q", s3.Redundancy)
+	}
+	if s3.MessageType != "classic" {
+		t.Errorf("bad message_type: %q", s3.MessageType)
 	}
 
 	// Update
